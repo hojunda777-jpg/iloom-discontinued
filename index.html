@@ -147,16 +147,50 @@ input[type="file"] { display: none; }
     </div>
     <div class="header-right">
       <div class="header-meta" id="headerMeta"></div>
+      <div style="text-align:right; margin-bottom:4px;">
+        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fhojunda777-jpg.github.io%2Filoom-discontinued%2F&count_bg=%231d4ed8&title_bg=%23475569&icon=&icon_color=%23E7E7E7&title=%EC%98%A4%EB%8A%98+%2F+%EB%88%84%EC%A0%81&edge_flat=true" alt="접속자수" style="height:18px;">
+      </div>
       <div class="header-notice">⚠ 본 재고 수량은 실시간이 아닌 <strong>생성일 오전 7시 기준</strong>으로 산출된 수량입니다.</div>
     </div>
-    
+    <button class="btn btn-secondary btn-sm" onclick="toggleAdminPanel()" style="flex-shrink:0;">🔧 관리자</button>
   </div>
 
-  
-  
+  <!-- 관리자 바 -->
+  <div class="admin-bar hidden" id="adminBar"><div class="admin-bar-label">🔧 관리자 모드 — 변경 후 저장 버튼을 눌러 JSON을 내려받고 스크립트를 재실행하세요</div></div>
 
-  
-  
+  <!-- 관리자 패널 -->
+  <div class="admin-panel hidden" id="adminPanel">
+    <div class="admin-section">
+      <div class="admin-section-title">📢 공지 문구 편집</div>
+      <textarea class="notice-editor" id="noticeEditor" placeholder="공지 내용을 입력하세요..."></textarea>
+    </div>
+    <div class="admin-section">
+      <div class="admin-section-title">
+        📋 단종예정 품목 등록
+        <button class="btn btn-secondary btn-sm" onclick="toggleUploadBox()">일괄입력 ▾</button>
+      </div>
+      <div id="uploadSection" style="display:none; margin-bottom:16px;">
+        <div style="margin-bottom:8px;">
+          <span class="upload-template" onclick="downloadTemplate()">📥 양식 다운로드 (.xlsx)</span>
+          <span style="color:#94a3b8; margin-left:8px; font-size:12px;">컬럼: 단품코드 · 색상 · 단종구분</span>
+        </div>
+        <div class="upload-box" id="uploadBox" onclick="document.getElementById('fileInput').click()">
+          <div class="upload-box-icon">📂</div>
+          <div class="upload-box-text">클릭하거나 파일을 여기에 드래그하세요</div>
+          <div class="upload-box-sub">.xlsx · .xls · .csv 지원</div>
+        </div>
+        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(event)">
+        <div id="uploadMsg" style="margin-top:8px; font-size:12px; color:#16a34a;"></div>
+      </div>
+      <div class="item-rows" id="itemRows"></div>
+      <button class="add-row-btn" onclick="addRow()">+ 항목 추가</button>
+    </div>
+    <div class="save-bar">
+      <button class="btn btn-primary" onclick="saveConfig()">저장</button>
+      <button class="btn btn-secondary" onclick="resetConfig()">초기화</button>
+      <span class="save-msg" id="saveMsg"></span>
+    </div>
+  </div>
 
   <!-- 공지 박스 -->
   <div class="notice-box" id="noticeBox">
