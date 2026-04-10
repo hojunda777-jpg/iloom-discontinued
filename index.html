@@ -400,9 +400,9 @@ function renderSetItems(items, highlight) {
   const rows = items.map(it => {
     const isTarget = highlight && it.단품코드.toUpperCase().includes(highlight.toUpperCase());
     return `<tr style="${isTarget ? 'background:#eff6ff;' : ''}${it.단종여부 ? 'background:#fffbeb;' : ''}">
-      <td class="code" style="${isTarget ? 'font-weight:600;color:#1d4ed8;' : ''}">${esc(it.단품코드)}</td>
-      <td class="code">${esc(it.단품색상)}</td>
-      <td style="font-size:13px;">${esc(it.단품명칭)}</td>
+      <td style="font-family:ui-monospace,monospace;${isTarget ? 'font-weight:600;color:#1d4ed8;' : ''}">${esc(it.단품코드)}</td>
+      <td style="font-family:ui-monospace,monospace">${esc(it.단품색상)}</td>
+      <td>${esc(it.단품명칭)}</td>
       <td class="num">${it.구성수량}</td>
       <td>${it.단품사용구분 === '사용'
         ? '<span class="badge-tag badge-ok">사용</span>'
